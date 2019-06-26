@@ -1,0 +1,73 @@
+<div class="row" ng-hide="claim._id">
+    <div class="col-md-6">
+        <h2>Create new claim</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div>
+      <p>
+        <label>Member ID  (required)</label> 
+        <input id="memberNr" class="form-control" type="text" ng-model="claim.memberNr" required> 
+      </p>
+      <p>
+        <label>Loss Nr (required)</label> 
+        <input id="lossNr" class="form-control" type="text" ng-model="claim.lossNr" required> 
+      </p>
+      <p>
+        <label>Loss Description </label> 
+        <input id="lossDesc" class="form-control" type="text" ng-model="claim.lossDesc"> 
+      </p>
+      <p>
+          <label>Type  of Loss </label> 
+          <input id="lossType" class="form-control" type="text" ng-model="claim.lossType"> 
+        </p>
+      <p>
+          <label>Date of Loss </label> 
+          <input id="lossDate" class="form-control" type="text" ng-model="claim.lossDate"> 
+        </p>
+      <p>
+        <label>Payment Details </label> 
+        <input id="payments" class="form-control" type="text" ng-model="claim.payments"> 
+      </p>
+      <p>
+        <label>Coverages</label> 
+        <input id="coverage" class="form-control" type="text" ng-model="claim.coverage"> 
+      </p>
+      <p>
+        <label>MSR Details</label> 
+        <input id="msrDetails" class="form-control" type="text" ng-model="claim.msrDetails"> 
+      </p>
+<p>
+        <label>Inspection Status</label> 
+        <input id="inspStatus" class="form-control" type="text" ng-model="claim.inspStatus"> 
+      </p>
+      <p>
+        <label>Inspection Type</label> 
+        <input id="inspType" class="form-control" type="text" ng-model="claim.inspType"> 
+      </p>
+      <p>
+        <label>Inspection Date</label> 
+        <input id="inspDate" class="form-control" type="text" ng-model="claim.inspDate"> 
+      </p>
+      <p>
+        <label>Rental Coverage Class</label> 
+        <input id="rentalCovClass" class="form-control" type="text" ng-model="claim.rentalCovClass"> 
+      </p>
+      <p>
+        <label>Rental Confirmation Number</label> 
+        <input id="rentalConfNumber" class="form-control" type="text" ng-model="claim.rentalConfNumber"> 
+      </p>
+      <p>
+        <label>Rental Assignment Status</label> 
+        <input id="rentalAsgnStatus" class="form-control" type="text" ng-model="claim.rentalAsgnStatus"> 
+      </p>
+      <p>
+        <label>Rental End Date</label> 
+        <input id="rentalEndDate" class="form-control" type="text" ng-model="claim.rentalEndDate"> 
+      </p>
+      <p>
+        <button style="margin-top:20px" class="btn btn-default" ng-click="saveClaim(claim)">Save</button>
+        <button style="margin-top:20px" class="btn btn-default" ng-click="back()">Back</button>
+      </p>
+    </div>
+  </div>

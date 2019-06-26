@@ -1,0 +1,38 @@
+<div class = "row">
+    <div class="col-md-6">
+      <h2>
+        {{ claim.memberNr }} {{ claim.lossNr }}
+      </h2>
+    </div>
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-2">
+      <a href="#/"><button style="margin-top:20px" class="btn btn-default" ng-click="deleteClaim(claim._id)">Delete</button></a>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+  <div ng-hide="editMode" class="container">
+    <div>
+        <p ng-if="claim.lossDesc">Loss Description: {{ claim.lossDesc }} </p>
+        <p ng-if="claim.lossType">Type of Loss: {{ claim.lossType }} </p>
+        <p ng-if="claim.lossDate">Date of Loss: {{ claim.lossDate }} </p>
+      <p ng-if="claim.payments">payments: {{ claim.payments }} </p>
+      <p ng-if="claim.coverage">Coverages: {{ claim.coverage}} </p>
+      <p ng-if="claim.msrDetails"> MSR: {{ claim.msrDetails }} </p>
+	 <p ng-if="claim.inspStatus">Inspection Status: {{ claim.inspStatus}} </p>
+      <p ng-if="claim.inspType">Inspection Type: {{ claim.inspType}} </p>
+      <p ng-if="claim.inspDate"> Inspection Date: {{ claim.inspDate}} </p>
+	 <p ng-if="claim.rentalCovClass">Rental Coverage Class: {{ claim.rentalCovClass}} </p>
+      <p ng-if="claim.rentalConfNumber">Rental Confirmation Number: {{ claim.rentalConfNumber}} </p>
+      <p ng-if="claim.rentalAsgnStatus"> Rental Assignment Status: {{ claim.rentalAsgnStatus}} </p>
+	 <p ng-if="claim.rentalEndDate">Rental End Date: {{ claim.rentalEndDate}} </p>
+      <p>
+        <button style="margin-top:20px" class="btn btn-default" ng-click="toggleEdit()">Edit</button>
+        <a style="margin-top:20px" class="btn btn-default" href="#/">Back</a>
+      </p>
+    </div>
+  </div>
+  <!-- Claim form -->
+  <div ng-include="claimFormUrl">
+  </div>
