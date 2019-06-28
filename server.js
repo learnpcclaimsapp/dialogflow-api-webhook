@@ -187,19 +187,19 @@ app.post('/webhook', function (req, res) {
       if (err) throw err;
       console.log(result[0].payments);
 
-      if(result[0].inspStatus != null )
+      if(result[0].inspStatus !== null )
       {
         inspAvailable = 'Y';
       }
-      if(result[0].rentalAsgnStatus != null )
+      if(result[0].rentalAsgnStatus !== null )
       {
         rentalAvailable = 'Y';
       }
-      if(result[0].msrDetails != null )
+      if(result[0].msrDetails !== null )
       {
         msrAvailable = 'Y';
       }
-      if(result[0].totalLoss != null )
+      if(result[0].totalLoss !== null )
       {
         totalLossAvailable = 'Y';
       }
@@ -328,6 +328,66 @@ if(action == "claim-status-totalloss"){
     fulfillmentText: webhookReply
     })
   });
+}
+if(action == "input.default.fallback"){
+  var memberNr = req.body.queryResult.parameters['memberNr'];
+    var lossNr = req.body.queryResult.parameters['lossNr'];
+    var query = { memberNr: memberNr,lossNr: lossNr };
+    
+    var webhookReply = '';
+    var inspAvailable = '';
+    var rentalAvailable = '';
+    var msrAvailable = '';
+    var totalLossAvailable = '';
+
+    db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result[0].payments);
+
+      if(result[0].inspStatus !== null )
+      {
+        inspAvailable = 'Y';
+      }
+      if(result[0].rentalAsgnStatus !== null )
+      {
+        rentalAvailable = 'Y';
+      }
+      if(result[0].msrDetails !== null )
+      {
+        msrAvailable = 'Y';
+      }
+      if(result[0].totalLoss !== null )
+      {
+        totalLossAvailable = 'Y';
+      }
+
+      webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. I can provide you information about ';
+    
+      if(inspAvailable == 'Y' ){
+        webhookReply = webhookReply +  ', '+ 'Inspection';
+      }
+
+      if(rentalAvailable == 'Y'){
+        webhookReply = webhookReply +  ', '+'Rental Assignment';
+      }
+
+      if(msrAvailable == 'Y'){
+        webhookReply = webhookReply + ', '+ 'MSR Details';
+      }
+
+      if(totalLossAvailable == 'Y'){
+        webhookReply = webhookReply + ', '+ 'Total Loss Offer';
+      }
+
+      if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
+      webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      }
+      
+    
+      res.status(200).json({
+        fulfillmentText: webhookReply
+        })
+      });
 }
 else if(action == "report-claim"){
   var myobj = { memberNr: memberNr, lossNr: lossNr, lossType: lossType, lossDate: lossDate, lossDesc: lossDesc };
