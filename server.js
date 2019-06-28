@@ -330,8 +330,8 @@ if(action == "claim-status-totalloss"){
   });
 }
 if(action == "input.default.fallback"){
-  var memberNr = req.body.queryResult.parameters['memberNr'];
-    var lossNr = req.body.queryResult.parameters['lossNr'];
+  var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
+  var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
     var query = { memberNr: memberNr,lossNr: lossNr };
     
     var webhookReply = '';
