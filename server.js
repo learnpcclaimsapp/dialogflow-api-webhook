@@ -199,6 +199,7 @@ app.post('/webhook', function (req, res) {
       {
         msrAvailable = 'Y';
       }
+      
       if(result[0].totalLoss !== null )
       {
         totalLossAvailable = 'Y';
