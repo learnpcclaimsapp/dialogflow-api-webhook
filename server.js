@@ -318,11 +318,11 @@ if(action == "claim-status-totalloss"){
     if (err) throw err;
     console.log(result[0].payments);
     
-    if(result[0].inspStatus == "Scheduled"){
-    webhookReply = 'Dear ' + memberNr + '! Your '+result[0].inspType+' inspection has been scheduled on '+result[0].inspDate;
+    if(result[0].totalLoss == "Accepted"){
+    webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate'. Please wait for the confirmation mail';
     }
     else{
-      webhookReply = 'Dear ' + memberNr + '! Your inspection has not been scheduled yet. We will let you as soon as an inspection is scheduled.';
+      webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has not been accepted. Your details will be communicated through mail.';
     }
 
   res.status(200).json({
