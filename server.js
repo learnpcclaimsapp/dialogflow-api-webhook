@@ -164,6 +164,7 @@ app.post('/webhook', function (req, res) {
   // var lossDate = req.body.queryResult.parameters['lossDate'];
   // var lossDesc = req.body.queryResult.parameters['lossDesc'];
   var action = req.body.queryResult.action;
+  console.log('tharun'+action);
 
   // console.log(memberNr);
   // console.log(lossNr);
