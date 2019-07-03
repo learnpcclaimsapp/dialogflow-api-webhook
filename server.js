@@ -330,6 +330,30 @@ if(action == "claim-status-totalloss"){
     })
   });
 }
+
+if(action == "claim-status-payments"){
+  var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
+  var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+  var query = { memberNr: memberNr,lossNr: lossNr };
+  var webhookReply = '';
+
+  webhookReply = memberNr;
+  db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result[0].payments);
+    
+    if(result[0].payments !== null){
+    webhookReply = 'Dear ' + memberNr + '! Your claim amount of '+ result[0].payments+' has been sent on '+result[0].paymentDate +'. Please check and let us know in case of any issues.';
+    }
+    else{
+      webhookReply = 'Dear ' + memberNr + '! Your Claim Settlement is in progress. You will get claim amount once the claim is processed.';
+    }
+
+  res.status(200).json({
+    fulfillmentText: webhookReply
+    })
+  });
+}
 if(action == "input.default.fallback"){
   var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
   var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];

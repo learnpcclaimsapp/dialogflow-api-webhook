@@ -17,7 +17,8 @@
         <p ng-if="claim.lossDesc">Loss Description: {{ claim.lossDesc }} </p>
         <p ng-if="claim.lossType">Type of Loss: {{ claim.lossType }} </p>
         <p ng-if="claim.lossDate">Date of Loss: {{ claim.lossDate }} </p>
-      <p ng-if="claim.payments">payments: {{ claim.payments }} </p>
+      <p ng-if="claim.payments">Payment Amount: {{ claim.payments }} </p>
+      <p ng-if="claim.paymentDate">Payment Settled Date: {{ claim.paymentDate }} </p>
       <p ng-if="claim.coverage">Coverages: {{ claim.coverage}} </p>
       <p ng-if="claim.msrDetails"> MSR: {{ claim.msrDetails }} </p>
 	 <p ng-if="claim.inspStatus">Inspection Status: {{ claim.inspStatus}} </p>
