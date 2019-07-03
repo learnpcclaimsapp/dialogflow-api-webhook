@@ -319,7 +319,7 @@ if(action == "claim-status-totalloss"){
     console.log(result[0].payments);
     
     if(result[0].totalLoss == "Accepted"){
-    webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate'. Please wait for the confirmation mail';
+    webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate+'. Please wait for the confirmation mail';
     }
     else{
       webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has not been accepted. Your details will be communicated through mail.';
