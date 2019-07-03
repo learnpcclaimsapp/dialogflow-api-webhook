@@ -182,6 +182,7 @@ app.post('/webhook', function (req, res) {
     var rentalAvailable = '';
     var msrAvailable = '';
     var totalLossAvailable = '';
+    var paymentAvailable ='';
 
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
@@ -190,6 +191,10 @@ app.post('/webhook', function (req, res) {
       if(result[0].inspStatus !== null )
       {
         inspAvailable = 'Y';
+      }
+      if(result[0].payments !== null )
+      {
+        paymentAvailable = 'Y';
       }
       if(result[0].rentalAsgnStatus !== null )
       {
@@ -208,7 +213,7 @@ app.post('/webhook', function (req, res) {
       webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. I can provide you information about ';
     
       if(inspAvailable == 'Y' ){
-        webhookReply = webhookReply +  ', '+ 'Inspection';
+        webhookReply = webhookReply + 'Inspection';
       }
 
       if(rentalAvailable == 'Y'){
@@ -217,6 +222,10 @@ app.post('/webhook', function (req, res) {
 
       if(msrAvailable == 'Y'){
         webhookReply = webhookReply + ', '+ 'MSR Details';
+      }
+
+      if(paymentAvailable == 'Y'){
+        webhookReply = webhookReply + ', '+ 'Payment Details';
       }
 
       if(totalLossAvailable == 'Y'){
@@ -364,6 +373,7 @@ if(action == "input.default.fallback"){
     var rentalAvailable = '';
     var msrAvailable = '';
     var totalLossAvailable = '';
+    var paymentAvailable ='';
 
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
@@ -377,6 +387,10 @@ if(action == "input.default.fallback"){
       {
         rentalAvailable = 'Y';
       }
+      if(result[0].payments !== null )
+      {
+        paymentAvailable = 'Y';
+      }
       if(result[0].msrDetails !== null )
       {
         msrAvailable = 'Y';
@@ -389,7 +403,7 @@ if(action == "input.default.fallback"){
       webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. I can provide you information about ';
     
       if(inspAvailable == 'Y' ){
-        webhookReply = webhookReply +  ', '+ 'Inspection';
+        webhookReply = webhookReply + 'Inspection';
       }
 
       if(rentalAvailable == 'Y'){
@@ -398,6 +412,10 @@ if(action == "input.default.fallback"){
 
       if(msrAvailable == 'Y'){
         webhookReply = webhookReply + ', '+ 'MSR Details';
+      }
+
+      if(paymentAvailable == 'Y'){
+        webhookReply = webhookReply + ', '+ 'Payment Details';
       }
 
       if(totalLossAvailable == 'Y'){
