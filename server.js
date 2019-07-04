@@ -360,7 +360,7 @@ if(action == "claim-status-payments"){
     })
   });
 }
-if(action == "input.default.fallback"){
+if(action == "input-default-fallback"){
   var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
   var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
     var query = { memberNr: memberNr,lossNr: lossNr };
