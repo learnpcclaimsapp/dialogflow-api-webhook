@@ -292,7 +292,7 @@ if(action == "claim-status-rental"){
 }
 
 if(action == "claim-status-msr"){
-  console.log('tharun'+ JSON.stringify(req.body.queryResult) );
+  console.log('tharun'+ JSON.stringify(req.body.queryResult.outputContexts[0]) );
   var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
   var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
   var query = { memberNr: memberNr,lossNr: lossNr };
