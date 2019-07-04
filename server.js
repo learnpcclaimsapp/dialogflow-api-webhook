@@ -164,8 +164,7 @@ app.post('/webhook', function (req, res) {
   // var lossDate = req.body.queryResult.parameters['lossDate'];
   // var lossDesc = req.body.queryResult.parameters['lossDesc'];
   var action = req.body.queryResult.action;
-  console.log('tharun'+action);
-
+  
   // console.log(memberNr);
   // console.log(lossNr);
 
@@ -212,7 +211,7 @@ app.post('/webhook', function (req, res) {
         totalLossAvailable = 'Y';
       }
 
-      webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. I can provide you information about ';
+      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. I can provide you information about ';
     
       if(inspAvailable == 'Y' ){
         webhookReply = webhookReply + 'Inspection';
@@ -235,7 +234,7 @@ app.post('/webhook', function (req, res) {
       }
 
       if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
-      webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
       }
       
     
@@ -257,10 +256,10 @@ if(action == "claim-status-inspection"){
       console.log(result[0].payments);
       
       if(result[0].inspStatus == "Scheduled"){
-      webhookReply = 'Dear ' + memberNr + '! Your '+result[0].inspType+' inspection has been scheduled on '+result[0].inspDate;
+      webhookReply = 'Dear ' + result[0].memberName + '! Your '+result[0].inspType+' inspection has been scheduled on '+result[0].inspDate;
       }
       else{
-        webhookReply = 'Dear ' + memberNr + '! Your inspection has not been scheduled yet. We will let you as soon as an inspection is scheduled.';
+        webhookReply = 'Dear ' + result[0].memberName + '! Your inspection has not been scheduled yet. We will let you as soon as an inspection is scheduled.';
       }
 
     res.status(200).json({
@@ -280,10 +279,10 @@ if(action == "claim-status-rental"){
     console.log(result[0].payments);
     
     if(result[0].rentalAsgnStatus == "Confirmed"){
-    webhookReply = 'Dear ' + memberNr + '! Your policy allows you to rent a '+result[0].rentalCovClass+' vehicle. Your Rental Vehicle has been confirmed. The confirmation number is '+ result[0].rentalConfNumber+ ' . Your rental reservation ends on '+result[0].rentalEndDate+'.';
+    webhookReply = 'Dear ' + result[0].memberName + '! Your policy allows you to rent a '+result[0].rentalCovClass+' vehicle. Your Rental Vehicle has been confirmed. The confirmation number is '+ result[0].rentalConfNumber+ ' . Your rental reservation ends on '+result[0].rentalEndDate+'.';
     }
     else{
-      webhookReply = 'Dear ' + memberNr + '! Your policy does not allow you to rent a vehicle.'
+      webhookReply = 'Dear ' + result[0].memberName + '! Your policy does not allow you to rent a vehicle.'
     }
 
   res.status(200).json({
@@ -303,10 +302,10 @@ if(action == "claim-status-msr"){
     console.log(result[0].payments);
     
     if(result[0].msrDetails != ""){
-    webhookReply = 'Dear ' + memberNr + '! Your claim has been handled by '+result[0].msrDetails;
+    webhookReply = 'Dear ' + result[0].memberName + '! Your claim has been handled by '+result[0].msrDetails;
     }
     else{
-      webhookReply = 'Dear ' + memberNr + '! Please call 210-456-9999 to know more about your claim.';
+      webhookReply = 'Dear ' + result[0].memberName + '! Please call 210-456-9999 to know more about your claim.';
     }
 
   res.status(200).json({
@@ -326,10 +325,10 @@ if(action == "claim-status-totalloss"){
     console.log(result[0].payments);
     
     if(result[0].totalLoss == "Accepted"){
-    webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate+'. Please wait for the confirmation mail';
+    webhookReply = 'Dear ' + result[0].memberName + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate+'. Please wait for the confirmation mail';
     }
     else{
-      webhookReply = 'Dear ' + memberNr + '! Your Total Loss Offer has not been accepted. Your details will be communicated through mail.';
+      webhookReply = 'Dear ' + result[0].memberName + '! Your Total Loss Offer has not been accepted. Your details will be communicated through mail.';
     }
 
   res.status(200).json({
@@ -349,10 +348,10 @@ if(action == "claim-status-payments"){
     console.log(result[0].payments);
     
     if(result[0].payments !== null){
-    webhookReply = 'Dear ' + memberNr + '! Your claim amount of '+ result[0].payments+' has been sent on '+result[0].paymentDate +'. Please check and let us know in case of any issues.';
+    webhookReply = 'Dear ' + result[0].memberName + '! Your claim amount of '+ result[0].payments+' has been sent on '+result[0].paymentDate +'. Please check and let us know in case of any issues.';
     }
     else{
-      webhookReply = 'Dear ' + memberNr + '! Your Claim Settlement is in progress. You will get claim amount once the claim is processed.';
+      webhookReply = 'Dear ' + result[0].memberName + '! Your Claim Settlement is in progress. You will get claim amount once the claim is processed.';
     }
 
   res.status(200).json({
@@ -397,7 +396,7 @@ if(action == "input-default-fallback"){
         totalLossAvailable = 'Y';
       }
 
-      webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. I can provide you information about ';
+      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. I can provide you information about ';
     
       if(inspAvailable == 'Y' ){
         webhookReply = webhookReply + 'Inspection';
@@ -420,7 +419,7 @@ if(action == "input-default-fallback"){
       }
 
       if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
-      webhookReply = 'Hello ' + memberNr + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
       }
       
     
@@ -444,7 +443,7 @@ else if(action == "report-claim"){
       console.log('1 record has been inserted');
     });
 
-  webhookReply = 'Hello ' + memberNr + '! Welcome from the webhook. Your loss details has been recorded';
+  webhookReply = 'Hello ' + result[0].memberName + '! Welcome from the webhook. Your loss details has been recorded';
 
   res.status(200).json({
     fulfillmentText: webhookReply
