@@ -14,6 +14,7 @@
   </div>
   <div ng-hide="editMode" class="container">
     <div>
+        <p ng-if="claim.memberName">Member Name: {{ claim.memberName }} </p>
         <p ng-if="claim.lossDesc">Loss Description: {{ claim.lossDesc }} </p>
         <p ng-if="claim.lossType">Type of Loss: {{ claim.lossType }} </p>
         <p ng-if="claim.lossDate">Date of Loss: {{ claim.lossDate }} </p>
