@@ -246,8 +246,15 @@ app.post('/webhook', function (req, res) {
 }
 
 if(action == "claim-status-inspection"){
-    var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-    var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+     var memberNr = '';
+     var lossNr= '';
+     for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
+      if(req.body.queryResult.outputContexts[i].parameters)
+       {
+        memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
+          lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
+        }
+      }
     var query = { memberNr: memberNr,lossNr: lossNr };
     var webhookReply = '';
 
@@ -269,8 +276,17 @@ if(action == "claim-status-inspection"){
 }
 
 if(action == "claim-status-rental"){
-  var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-  var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+  
+  var memberNr = '';
+  var lossNr= '';
+  for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
+   if(req.body.queryResult.outputContexts[i].parameters)
+   {
+      memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
+      lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
+   }
+  }
+  
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
@@ -292,25 +308,16 @@ if(action == "claim-status-rental"){
 }
 
 if(action == "claim-status-msr"){
-  console.log('tharun'+ JSON.stringify(req.body.queryResult.outputContexts) );
-  console.log('tharun'+ req.body.queryResult.outputContexts.length );
   var memberNr = '';
   var lossNr= '';
   for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
-   console.log("Inside Array" + JSON.stringify(req.body.queryResult.outputContexts[i]));
    if(req.body.queryResult.outputContexts[i].parameters)
    {
-     console.log("inside if");
       memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
       lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
    }
   }
   
-  console.log('Member Nr:', memberNr);
-  console.log('lossNr :', lossNr);
-  
-  // var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-  // var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
@@ -332,8 +339,15 @@ if(action == "claim-status-msr"){
 }
 
 if(action == "claim-status-totalloss"){
-  var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-  var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+   var memberNr = '';
+  var lossNr= '';
+  for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
+   if(req.body.queryResult.outputContexts[i].parameters)
+   {
+      memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
+      lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
+   }
+  }
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
@@ -355,8 +369,15 @@ if(action == "claim-status-totalloss"){
 }
 
 if(action == "claim-status-payments"){
-  var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-  var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+   var memberNr = '';
+  var lossNr= '';
+  for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
+   if(req.body.queryResult.outputContexts[i].parameters)
+   {
+      memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
+      lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
+   }
+  }
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
@@ -377,8 +398,15 @@ if(action == "claim-status-payments"){
   });
 }
 if(action == "input-default-fallback"){
-  var memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-  var lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+   var memberNr = '';
+  var lossNr= '';
+  for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
+   if(req.body.queryResult.outputContexts[i].parameters)
+   {
+      memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
+      lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
+   }
+  }
     var query = { memberNr: memberNr,lossNr: lossNr };
     
     var webhookReply = '';
