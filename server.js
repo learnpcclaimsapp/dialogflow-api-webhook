@@ -302,7 +302,7 @@ if(action == "claim-status-msr"){
     console.log(result[0].payments);
     
     if(result[0].msrDetails != ""){
-    webhookReply = 'Dear ' + result[0].memberName + '! Your claim has been handled by '+result[0].msrDetails;
+    webhookReply = 'Dear ' + result[0].memberName + '! Your claim has been handled by '+result[0].msrDetails+ '. Please contact MSR on '+result[0].msrContactDetails;
     }
     else{
       webhookReply = 'Dear ' + result[0].memberName + '! Please call 210-456-9999 to know more about your claim.';
