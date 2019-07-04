@@ -300,8 +300,9 @@ if(action == "claim-status-msr"){
    console.log("Inside Array" + JSON.stringify(req.body.queryResult.outputContexts[i]));
    if(req.body.queryResult.outputContexts[i].parameters)
    {
-      memberNr = req.body.queryResult.outputContexts[0].parameters['memberNr'];
-      lossNr = req.body.queryResult.outputContexts[0].parameters['lossNr'];
+     console.log("inside if");
+      memberNr = req.body.queryResult.outputContexts[i].parameters['memberNr'];
+      lossNr = req.body.queryResult.outputContexts[i].parameters['lossNr'];
    }
   }
   
