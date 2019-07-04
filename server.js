@@ -197,6 +197,7 @@ app.post('/webhook', function (req, res) {
       {
         paymentAvailable = 'Y';
       }
+      
       if(result[0].rentalAsgnStatus !== null )
       {
         rentalAvailable = 'Y';
@@ -251,7 +252,6 @@ if(action == "claim-status-inspection"){
     var query = { memberNr: memberNr,lossNr: lossNr };
     var webhookReply = '';
 
-    webhookReply = memberNr;
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
       console.log(result[0].payments);
@@ -275,7 +275,6 @@ if(action == "claim-status-rental"){
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
-  webhookReply = memberNr;
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
     console.log(result[0].payments);
@@ -299,7 +298,6 @@ if(action == "claim-status-msr"){
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
-  webhookReply = memberNr;
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
     console.log(result[0].payments);
@@ -323,7 +321,6 @@ if(action == "claim-status-totalloss"){
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
-  webhookReply = memberNr;
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
     console.log(result[0].payments);
@@ -347,7 +344,6 @@ if(action == "claim-status-payments"){
   var query = { memberNr: memberNr,lossNr: lossNr };
   var webhookReply = '';
 
-  webhookReply = memberNr;
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
     console.log(result[0].payments);
