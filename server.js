@@ -244,7 +244,7 @@ app.post('/webhook', function (req, res) {
         
       webhookReply = webhookReply + '. Please let me know what information you need.';
       if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
-      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. We are working on your claim. Any update will be notified. Do you want to know any other loss status.';
       }
       
     
@@ -524,7 +524,7 @@ if(action == "input-default-fallback"){
 
       webhookReply = webhookReply + '. Please let me know what information you need.';
       if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
-      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. We are working on your claim. Any update will be notified. Do you want to know any other loss status.';
       }
       
     
@@ -558,7 +558,7 @@ else if(action == "report-claim"){
         memberFullName = 'Member';
       }
 
-  webhookReply = 'Hello ' + memberFullName + '! Welcome from the webhook. Your loss details has been recorded';
+  webhookReply = 'Hello ' + memberFullName + '! Welcome from Claims. Your loss details has been recorded';
 
   res.status(200).json({
     fulfillmentText: webhookReply
