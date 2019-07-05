@@ -187,6 +187,12 @@ app.post('/webhook', function (req, res) {
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
 
+console.log('tharun'+result[0].inspStatus);
+console.log('tharun'+result[0].payments);
+console.log('tharun'+result[0].rentalAsgnStatus);
+console.log('tharun'+result[0].msrDetails);
+console.log('tharun'+result[0].totalLoss);
+
       if(result[0].inspStatus !== null )
       {
         inspAvailable = 'Y';
