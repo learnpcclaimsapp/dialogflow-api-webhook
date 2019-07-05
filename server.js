@@ -187,11 +187,15 @@ app.post('/webhook', function (req, res) {
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
 
-console.log('tharun'+result[0].inspStatus);
-console.log('tharun'+result[0].payments);
-console.log('tharun'+result[0].rentalAsgnStatus);
-console.log('tharun'+result[0].msrDetails);
-console.log('tharun'+result[0].totalLoss);
+    var memberFullName = '';
+    if(result[0].memberName !== undefined)
+    {
+      memberFullName = result[0].memberName;
+    }
+    else
+    {
+      memberFullName = 'Member';
+    }
 
       if(result[0].inspStatus !== undefined )
       {
@@ -216,7 +220,7 @@ console.log('tharun'+result[0].totalLoss);
         totalLossAvailable = 'Y';
       }
 
-      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. I can provide you information about ';
+      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. I can provide you information about ';
     
       if(inspAvailable == 'Y' ){
         webhookReply = webhookReply + 'Inspection';
@@ -240,7 +244,7 @@ console.log('tharun'+result[0].totalLoss);
         
       webhookReply = webhookReply + '. Please let me know what information you need.';
       if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
-      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
       }
       
     
@@ -266,13 +270,22 @@ if(action == "claim-status-inspection"){
 
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result[0].payments);
+      
+      var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
       
       if(result[0].inspStatus == "Scheduled"){
-      webhookReply = 'Dear ' + result[0].memberName + '! Your '+result[0].inspType+' inspection has been scheduled on '+result[0].inspDate+'. Do you need any other information?';
+      webhookReply = 'Dear ' + memberFullName + '! Your '+result[0].inspType+' inspection has been scheduled on '+result[0].inspDate+'. Do you need any other information?';
       }
       else{
-        webhookReply = 'Dear ' + result[0].memberName + '! Your inspection has not been scheduled yet. We will let you as soon as an inspection is scheduled. Do you need any other information?';
+        webhookReply = 'Dear ' + memberFullName + '! Your inspection has not been scheduled yet. We will let you as soon as an inspection is scheduled. Do you need any other information?';
       }
 
     res.status(200).json({
@@ -298,13 +311,21 @@ if(action == "claim-status-rental"){
 
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
-    console.log(result[0].payments);
+      var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
     
     if(result[0].rentalAsgnStatus == "Confirmed"){
-    webhookReply = 'Dear ' + result[0].memberName + '! Your policy allows you to rent a '+result[0].rentalCovClass+' vehicle. Your Rental Vehicle has been confirmed. The confirmation number is '+ result[0].rentalConfNumber+ ' . Your rental reservation ends on '+result[0].rentalEndDate+'.Do you need any other information?';
+    webhookReply = 'Dear ' + memberFullName + '! Your policy allows you to rent a '+result[0].rentalCovClass+' vehicle. Your Rental Vehicle has been confirmed. The confirmation number is '+ result[0].rentalConfNumber+ ' . Your rental reservation ends on '+result[0].rentalEndDate+'.Do you need any other information?';
     }
     else{
-      webhookReply = 'Dear ' + result[0].memberName + '! Your policy does not allow you to rent a vehicle. Do you need any other information?'
+      webhookReply = 'Dear ' + memberFullName + '! Your policy does not allow you to rent a vehicle. Do you need any other information?'
     }
 
   res.status(200).json({
@@ -329,13 +350,21 @@ if(action == "claim-status-msr"){
 
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
-    console.log(result[0].payments);
+      var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
     
     if(result[0].msrDetails != ""){
-    webhookReply = 'Dear ' + result[0].memberName + '! Your claim has been handled by '+result[0].msrDetails+ '. Please contact MSR on '+result[0].msrContactDetails+'. Do you need any other information';
+    webhookReply = 'Dear ' + memberFullName + '! Your claim has been handled by '+result[0].msrDetails+ '. Please contact MSR on '+result[0].msrContactDetails+'. Do you need any other information';
     }
     else{
-      webhookReply = 'Dear ' + result[0].memberName + '! Please call 210-456-9999 to know more about your claim. Do you need any other information?';
+      webhookReply = 'Dear ' + memberFullName + '! Please call 210-456-9999 to know more about your claim. Do you need any other information?';
     }
 
   res.status(200).json({
@@ -359,13 +388,21 @@ if(action == "claim-status-totalloss"){
 
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
-    console.log(result[0].payments);
+    var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
     
     if(result[0].totalLoss == "Accepted"){
-    webhookReply = 'Dear ' + result[0].memberName + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate+'. Please wait for the confirmation mail. Do you need any other information?';
+    webhookReply = 'Dear ' + memberFullName + '! Your Total Loss Offer has been accepted on '+result[0].totalLossSettlementDate+'. Please wait for the confirmation mail. Do you need any other information?';
     }
     else{
-      webhookReply = 'Dear ' + result[0].memberName + '! Your Total Loss Offer has not been accepted. Your details will be communicated through mail. Do you need any other information?';
+      webhookReply = 'Dear ' + memberFullName + '! Your Total Loss Offer has not been accepted. Your details will be communicated through mail. Do you need any other information?';
     }
 
   res.status(200).json({
@@ -375,7 +412,7 @@ if(action == "claim-status-totalloss"){
 }
 
 if(action == "claim-status-payments"){
-   var memberNr = '';
+  var memberNr = '';
   var lossNr= '';
   for(let i = 0; i < req.body.queryResult.outputContexts.length; i++){
    if(req.body.queryResult.outputContexts[i].parameters)
@@ -389,13 +426,21 @@ if(action == "claim-status-payments"){
 
   db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
     if (err) throw err;
-    console.log(result[0].payments);
+    var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
     
     if(result[0].payments !== null){
-    webhookReply = 'Dear ' + result[0].memberName + '! Your claim amount of '+ result[0].payments+' has been sent on '+result[0].paymentDate +'. Please check and let us know in case of any issues. Do you need any other information?';
+    webhookReply = 'Dear ' + memberFullName + '! Your claim amount of '+ result[0].payments+' has been sent on '+result[0].paymentDate +'. Please check and let us know in case of any issues. Do you need any other information?';
     }
     else{
-      webhookReply = 'Dear ' + result[0].memberName + '! Your Claim Settlement is in progress. You will get claim amount once the claim is processed. Do you need any other information?';
+      webhookReply = 'Dear ' + memberFullName + '! Your Claim Settlement is in progress. You will get claim amount once the claim is processed. Do you need any other information?';
     }
 
   res.status(200).json({
@@ -424,7 +469,15 @@ if(action == "input-default-fallback"){
 
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
-      console.log(result[0].payments);
+      var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
 
       if(result[0].inspStatus !== null )
       {
@@ -447,7 +500,7 @@ if(action == "input-default-fallback"){
         totalLossAvailable = 'Y';
       }
 
-      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. I can provide you information about ';
+      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. I can provide you information about ';
     
       if(inspAvailable == 'Y' ){
         webhookReply = webhookReply + 'Inspection';
@@ -471,7 +524,7 @@ if(action == "input-default-fallback"){
 
       webhookReply = webhookReply + '. Please let me know what information you need.';
       if(inspAvailable != 'Y' && rentalAvailable != 'Y' && msrAvailable != 'Y' && totalLossAvailable != 'Y' ){
-      webhookReply = 'Hello ' + result[0].memberName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
+      webhookReply = 'Hello ' + memberFullName + '! Welcome to Claims. We are working on your claim. Any update will be notified';
       }
       
     
@@ -494,8 +547,18 @@ else if(action == "report-claim"){
       if (err) throw err;
       console.log('1 record has been inserted');
     });
+    
+    var memberFullName = '';
+      if(result[0].memberName !== undefined)
+      {
+        memberFullName = result[0].memberName;
+      }
+      else
+      {
+        memberFullName = 'Member';
+      }
 
-  webhookReply = 'Hello ' + result[0].memberName + '! Welcome from the webhook. Your loss details has been recorded';
+  webhookReply = 'Hello ' + memberFullName + '! Welcome from the webhook. Your loss details has been recorded';
 
   res.status(200).json({
     fulfillmentText: webhookReply
