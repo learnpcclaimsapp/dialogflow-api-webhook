@@ -479,23 +479,23 @@ if(action == "input-default-fallback"){
         memberFullName = 'Member';
       }
 
-      if(result[0].inspStatus !== null )
+      if(result[0].inspStatus !== undefined )
       {
         inspAvailable = 'Y';
       }
-      if(result[0].rentalAsgnStatus !== null )
+      if(result[0].rentalAsgnStatus !== undefined )
       {
         rentalAvailable = 'Y';
       }
-      if(result[0].payments !== null )
+      if(result[0].payments !== undefined )
       {
         paymentAvailable = 'Y';
       }
-      if(result[0].msrDetails !== null )
+      if(result[0].msrDetails !== undefined )
       {
         msrAvailable = 'Y';
       }
-      if(result[0].totalLoss !== null )
+      if(result[0].totalLoss !== undefined )
       {
         totalLossAvailable = 'Y';
       }
