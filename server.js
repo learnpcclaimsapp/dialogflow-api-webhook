@@ -252,15 +252,13 @@ app.post('/webhook', function (req, res) {
       res.status(200).json({
         fulfillmentText: webhookReply
         })
-      });
     }
     catch (ex) {
       res.status(200).json({
         fulfillmentText: 'Sorry! I didn't get that'
         })
       });
-    }
-    
+  }
 }
 
 if(action == "claim-status-inspection"){
