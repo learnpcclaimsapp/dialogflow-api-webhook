@@ -255,7 +255,7 @@ app.post('/webhook', function (req, res) {
     }
     catch (ex) {
       res.status(200).json({
-        fulfillmentText: 'Sorry! I didn't get that'
+        fulfillmentText: 'Sorry! I did not get that'
         })
       });
   }
