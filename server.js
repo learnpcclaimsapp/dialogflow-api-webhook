@@ -257,7 +257,7 @@ app.post('/webhook', function (req, res) {
       res.status(200).json({
         fulfillmentText: 'Sorry! I did not get that'
         })
-      });
+      }
   }
 }
 
