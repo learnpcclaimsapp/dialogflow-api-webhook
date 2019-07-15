@@ -258,7 +258,7 @@ app.post('/webhook', function (req, res) {
         fulfillmentText: 'Sorry! I did not get that'
         })
       }
-  }
+  });
 }
 
 if(action == "claim-status-inspection"){
