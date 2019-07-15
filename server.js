@@ -187,6 +187,7 @@ app.post('/webhook', function (req, res) {
     db.collection(CLAIMS_COLLECTION).find(query).toArray(function(err, result) {
       if (err) throw err;
 
+    try {
     var memberFullName = '';
     if(result[0].memberName !== undefined)
     {
@@ -252,6 +253,13 @@ app.post('/webhook', function (req, res) {
         fulfillmentText: webhookReply
         })
       });
+    }
+    catch (ex) {
+      res.status(200).json({
+        fulfillmentText: 'Sorry! I didn't get that'
+        })
+      });
+    }
     
 }
 
